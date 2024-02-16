@@ -1,0 +1,65 @@
+﻿<Window
+    x:Class="CsharpDemo.Views.ColumnCreateBeam3Window"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:CsharpDemo.ViewModels"
+    Title="柱顶成梁"
+    Width="360"
+    Height="190"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:ColumnCreateBeam3ViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0">
+            <StackPanel>
+                <DockPanel Margin="5">
+                    <TextBlock VerticalAlignment="Center" Text="选择梁类型:" />
+                    <ComboBox
+                        Height="30"
+                        VerticalContentAlignment="Center"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding BeamTypes}"
+                        SelectedItem="{Binding Symbol}" />
+                </DockPanel>
+
+                <DockPanel Margin="5">
+                    <TextBlock VerticalAlignment="Center" Text="选择梁偏移:" />
+                    <TextBox
+                        Height="30"
+                        VerticalContentAlignment="Center"
+                        Text="{Binding Offset, UpdateSourceTrigger=PropertyChanged}" />
+                </DockPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button
+                    Width="80"
+                    Height="30"
+                    Margin="5"
+                    Command="{Binding CreateCommand}"
+                    Content="选择" />
+                <Button
+                    Name="CloseWindow"
+                    Width="80"
+                    Height="30"
+                    Margin="5"
+                    Click="CloseWindow_Click"
+                    Content="关闭" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
